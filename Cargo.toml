@@ -1,0 +1,13 @@
+[workspace]
+members = ["procmacro", "crates/*"]
+
+resolver = "2"
+
+[workspace.dependencies]
+proc-macro2 = "1.0.106"
+quote = "1.0.45"
+syn = { version = "2.0.117", features = ["full"] }
+
+attr_macro = { path = "crates/attr_macro" }
+derive_macro = { path = "crates/derive_macro" }
+functional_macro = { path = "crates/functional_macro" }
