@@ -8,14 +8,16 @@ pub fn repeated_impl(input: TokenStream) -> TokenStream {
         Err(e) => return e.to_compile_error().into(),
     };
     if parsed_input.len() != 2 {
-        let msg = "Expected exactly two arguments: a string literal and an integer";
-
-        let span = parsed_input
-            .iter()
-            .nth(2)
-            .map(|_e| proc_macro2::Span::call_site())
-            .unwrap_or_else(proc_macro2::Span::call_site);
-        return Error::new(span, msg).to_compile_error().into();
+        let span = match parsed_input.iter().nth(2) {
+            Some(extra) => syn::spanned::Spanned::span(extra),
+            None => proc_macro2::Span::call_site(),
+        };
+        return Error::new(
+            span,
+            "Expected exactly two arguments: a string literal and an integer",
+        )
+        .to_compile_error()
+        .into();
     }
 
     let string_value = match &parsed_input[0] {
