@@ -12,3 +12,4 @@ darling = "0.23.0"
 attr_macro = { path = "crates/attr_macro" }
 derive_macro = { path = "crates/derive_macro" }
 functional_macro = { path = "crates/functional_macro" }
+rstest = "*"

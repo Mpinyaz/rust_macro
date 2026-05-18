@@ -21,7 +21,6 @@ struct CustomModelArgs {
 }
 
 pub(crate) fn derive_custom_model_impl(input: TokenStream) -> TokenStream {
-    // Use syn::parse2 instead of parse_macro_input!
     let orig_struct: DeriveInput = match syn::parse2(input) {
         Ok(val) => val,
         Err(err) => return err.to_compile_error(),

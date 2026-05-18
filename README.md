@@ -11,3 +11,12 @@ form of one of the following available options:
 I will be using the following dependencies (i.e.
 `syn`,`proc-macro2`,`quote`,`darling` ) to simplify some of the parsing ,codegen
 and token transformation when implementing the macros.
+
+## Derive Macros
+
+```rust
+#[proc_macro_derive(DeriveCustomModel, attributes(custom_model))]
+pub fn derive_custom_model(item: TokenStream) -> TokenStream {
+    custom_model::derive_custom_model_impl(item.into()).into()
+}
+```
